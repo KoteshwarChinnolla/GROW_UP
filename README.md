@@ -1,6 +1,6 @@
 # INSTRUCTIONS
 ## FRONTEND 
-
+```
 company-website/
 │── public/               # Static assets like images, icons, and fonts
 │── src/                  # Main source code
@@ -14,9 +14,10 @@ company-website/
 │── package.json          # Contains project dependencies and scripts
 │── README.md             # Documentation about the project
 │── index.html            # Main entry point for a simple HTML/CSS project
+```
 
 # GIT COMMANDS
-
+[Setup git ](https://docs.github.com/en/get-started/git-basics/set-up-git)
 ### install git ( if not )
 
 LINK : [GIT INSTALLATION](https://git-scm.com/downloads/win)
@@ -25,6 +26,27 @@ LINK : [GIT INSTALLATION](https://git-scm.com/downloads/win)
 
 WINDOWS: enter this prompt in the terminal 
 
-'''
+```
 winget install --id GitHub.cli
-'''
+```
+REFERENCE : [ INSTALATION REFERENCE ](https://github.com/cli/cli#installation)
+
+After installation search for git bash in the search bar or go to command prompt and switch to git bash
+
+### configuration 
+
+USER NAME CONFIGURATION: [REFER](https://docs.github.com/en/get-started/git-basics/setting-your-username-in-git)
+
+command 
+```
+git config --global user.name "<user name>"
+```
+
+EMAIL CONFIGURATION: [REFER](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/setting-your-commit-email-address#setting-your-commit-email-address-on-github)
+
+command 
+```
+git config --global user.email "YOUR_EMAIL"
+```
+
+
