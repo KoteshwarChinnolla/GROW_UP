@@ -48,5 +48,26 @@ command
 ```
 git config --global user.email "YOUR_EMAIL"
 ```
+### connect to REPO
+
+[REFERENCE](https://github.com/firstcontributions/first-contributions)
+
+CLONE THE PROJECT
+```
+git clone https://github.com/KoteshwarChinnolla/GROW_UP
+```
+change the directory to GROW UP
+```
+cd GROW_UP
+```
+
+
+CHANGE THE BRANCH
+```
+git checkout branch_name
+```
+
+
+
 
 
