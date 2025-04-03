@@ -56,16 +56,41 @@ CLONE THE PROJECT
 ```
 git clone https://github.com/KoteshwarChinnolla/GROW_UP
 ```
-change the directory to GROW UP
+Change the directory to GROW UP
 ```
 cd GROW_UP
 ```
 
-
 CHANGE THE BRANCH
 ```
-git checkout branch_name
+git checkout <branch_name>(default main)
 ```
+
+### make changes in the repo
+
+```
+git pull
+```
+
+To add all the changes
+```
+git add .
+```
+to add a specific file
+```
+git add <file name>
+```
+commit the changes 
+```
+git commit -m "<commit name (anything)>"
+```
+
+push the changes
+```
+git push origin main(change the orgin if required)
+```
+
+
 
 
 
