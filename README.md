@@ -76,6 +76,12 @@ git switch -c your-new-branch-name
 ```
 git pull
 ```
+**OR**
+pull from particular branch
+
+```
+git pull origin <branch-name>
+```
 
 To add all the changes
 ```
@@ -95,6 +101,24 @@ push the changes
 git push origin main(change the orgin if required)
 ```
 
+remove files files that are pushed
+```
+git rm --cached <file-name>
+```
+if something does not push, then try to reset the last push by 
+```
+git reset HEAD~1
+```
+
+to remove the last commit
+```
+git reset --hard HEAD~1
+```
+pull from particular branch
+
+```
+git pull origin <branch-name>
+```
 
 
 
