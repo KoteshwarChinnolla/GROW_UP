@@ -66,6 +66,11 @@ CHANGE THE BRANCH
 git checkout <branch_name>(default main)
 ```
 
+Switch the branck 
+```
+git switch -c your-new-branch-name
+```
+
 ### make changes in the repo
 
 ```
