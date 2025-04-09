@@ -1,0 +1,153 @@
+/* === Navbar Styles === */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background: rgba(26, 26, 26, 0.7);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* === Logo Container === */
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-circle {
+  background: linear-gradient(135deg, #ff6ec4, #7873f5);
+  padding: 5px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: rotateGlow 6s linear infinite;
+}
+
+@keyframes rotateGlow {
+  0% {
+    box-shadow: 0 0 10px #ff6ec4, 0 0 20px #7873f5;
+  }
+  50% {
+    box-shadow: 0 0 15px #7873f5, 0 0 30px #ff6ec4;
+  }
+  100% {
+    box-shadow: 0 0 10px #ff6ec4, 0 0 20px #7873f5;
+  }
+}
+
+.nav-logo {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  border-radius: 50%;
+  background-color: #000;
+}
+
+.logo-text {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  margin-left: 12px;
+  background: linear-gradient(135deg, #ff6ec4, #7873f5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* === Navigation Links === */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  position: relative;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.nav-links a::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: -42px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #ff6ec4, #7873f5);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 30px;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 8px rgba(255, 110, 196, 0.6);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 999;
+}
+
+.nav-links a:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(5px);
+}
+
+.nav-links a:hover {
+  color: #00c8ff;
+  transform: translateY(-2px);
+}
+
+/* === Get Started Button === */
+.get-started {
+  background: linear-gradient(135deg, #00c8ff, #00f0ff);
+  color: #000;
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 200, 255, 0.5);
+}
+
+.get-started:hover {
+  background: linear-gradient(135deg, #00f0ff, #00c8ff);
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0, 200, 255, 0.7);
+}
+
+/* === Responsive Navbar === */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 10px 20px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 10px;
+  }
+
+  .nav-logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logo-text {
+    font-size: 1.6rem;
+  }
+
+  .get-started {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+}

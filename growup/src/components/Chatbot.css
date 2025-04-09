@@ -1,0 +1,136 @@
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .chat-toggle-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .chat-toggle-btn:hover {
+    transform: scale(1.1);
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  
+  .bounce {
+    animation: bounce 2s infinite;
+  }
+  
+  .chat-window {
+    width: 300px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+  }
+  
+  .chat-window.open {
+    display: flex;
+    animation: slideUp 0.5s ease-out;
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .chat-header {
+    background: linear-gradient(135deg, #007bff, #00d4ff);
+    color: #fff;
+    padding: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .bot-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: white;
+  }
+  
+  .chat-body {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+  }
+  
+  .chat-message {
+    background-color: #e2f0ff;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+  }
+  
+  .chat-footer {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+  }
+  
+  .chat-footer input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+  }
+  
+  .chat-footer button {
+    margin-left: 10px;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .chat-message.user {
+    background-color: #d1ffe0;
+    align-self: flex-end;
+    text-align: right;
+  }
+  
+  .chat-message.bot {
+    background-color: #e2f0ff;
+    align-self: flex-start;
+  }
+  
+  .typing {
+    font-style: italic;
+    color: #555;
+    margin: 6px;
+  }
+  
