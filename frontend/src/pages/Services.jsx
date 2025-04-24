@@ -13,9 +13,9 @@ import {
   FaQuoteLeft,
   FaChevronDown,
 } from "react-icons/fa";
-import heroImage from "../assets/Service.jpg";
+import heroImage from "../assets/service.jpg";
 import { initScrollAnimations } from "../utils/scrollAnimations";
-import Chatbot from "../components/Chatbot";
+// import Chatbot from "../components/Chatbot";
 
 const services = [
   {
@@ -889,7 +889,7 @@ function Services() {
           </button>
         </div>
       </div>
-      <Chatbot />
+      {/* <Chatbot /> */}
     </div>
   );
 }

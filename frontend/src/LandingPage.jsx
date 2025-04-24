@@ -34,7 +34,7 @@ export default function LandingPage() {
       if (!isPasswordMatch) return;
 
       try {
-        await axios.post("http://127.0.0.1:8000/signup", {
+        await axios.post("/api/signup", {
           name: fullName,
           email,
           phone,
@@ -52,7 +52,7 @@ export default function LandingPage() {
       }
     } else {
       try {
-        const response = await axios.post("http://localhost:8000/login", {
+        const response = await axios.post("/api/login", {
           email: loginEmail,
           password: loginPassword,
         });

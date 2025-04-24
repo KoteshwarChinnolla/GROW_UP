@@ -1,0 +1,26 @@
+services:
+  frontend:
+    image: koti21/grow_up_frontend:latest
+    # build: ./frontend
+    ports:
+      - "5000:5000"
+    # env_file:
+    #   - frontend/.env
+    networks:
+      - code_p
+    depends_on:
+      - backend
+  backend:
+    image: koti21/grow_up_backend2:latest
+    # build: ./backend
+    ports:
+      - "8000:8000"
+    env:
+      - GROQ_API_KEY="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"
+    # env_file:
+    #   - backend/.env
+    networks:
+      - code_p
+networks:
+  code_p:
+    driver: bridge

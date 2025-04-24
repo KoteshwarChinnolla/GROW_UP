@@ -2,7 +2,7 @@ from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_groq import ChatGroq
 from pydantic import BaseModel, Field
-from tkinter import Tk, filedialog
+# from tkinter import Tk, filedialog
 from pdfminer.high_level import extract_text
 import os
 from dotenv import load_dotenv
@@ -53,8 +53,8 @@ class role(BaseModel):
 
 
 # Hide the default tkinter window
-root = Tk()
-root.withdraw()
+# root = Tk()
+# root.withdraw()
 
 # Open file picker dialog
 class ResumeDecoder:

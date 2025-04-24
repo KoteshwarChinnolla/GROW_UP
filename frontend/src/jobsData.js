@@ -1,6 +1,8 @@
+// api=http://localhost:8000/get-jobs
+
 const fetchJobsData = async () => {
   try {
-    const response = await fetch('http://localhost:8000/get-jobs');
+    const response = await fetch('/api/get-jobs');
     if (!response.ok) {
       throw new Error('Failed to fetch job data');
     }

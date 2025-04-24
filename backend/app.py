@@ -6,7 +6,7 @@ from bson import ObjectId
 import uvicorn
 from chatbot.job_search import JobSearch
 from typing import List, Optional
-from chatbot.job_q import build_graph
+# from chatbot.job_q import build_graph
 from langchain_core.prompts import ChatPromptTemplate
 import markdown
 from markdownify import markdownify as md
@@ -15,7 +15,7 @@ from sorting import jobSort
 import os
 from pdfminer.high_level import extract_text
 from dotenv import load_dotenv
-import pandas as pd
+# import pandas as pd
 from passlib.hash import bcrypt
 import smtplib
 from email.mime.text import MIMEText
@@ -37,7 +37,7 @@ class ResetPasswordRequest(BaseModel):
 
 converter = JobDataTransformer()
 
-graph=build_graph()
+# graph=build_graph()
 
 
 JobSearch = JobSearch()
@@ -120,11 +120,11 @@ class details(BaseModel):
 
 
 # Sign Up route
-@app.get("/")
+@app.get("/api/")
 async def root():
     return {"message": "Welcome to the FastAPI backend!"}
 
-@app.get("/all_jobs")
+@app.get("/api/all_jobs")
 async def all_jobs():
     jobs_cursor = db.jobs.find()
     jobs = []
@@ -136,7 +136,7 @@ async def all_jobs():
     return {"jobs": jobs}
 
 
-@app.post("/signup")
+@app.post("/api/signup")
 async def signup(user: signup):
     user_dict = user.dict()
     for_login={}
@@ -147,14 +147,14 @@ async def signup(user: signup):
     return {"message": "User created successfully"}
 
 # Login route
-@app.post("/login")
+@app.post("/api/login")
 async def login(user: login):
     existing_user = db.users.find_one({"email": user.email, "password": user.password})
     if existing_user:
         return {"message": "Login successful", "user": user.email}
     raise HTTPException(status_code=401, detail="Invalid credentials")
 
-@app.post("/add-job")
+@app.post("/api/add-job")
 async def add_job(job: Job):
     job_dict = job.dict()
     print(job_dict)
@@ -164,14 +164,14 @@ async def add_job(job: Job):
 # @app.post("/find-edit-job")
 # async def find_edit_job()
 
-@app.post("/delete-job")
+@app.post("/api/delete-job")
 async def delete_job(job_id: d_job):
     result = db.jobs.delete_one({"_id": ObjectId(job_id.job_id)})
     if result.deleted_count == 0:
         raise HTTPException(status_code=404, detail="Job not found")
     return {"message": "Job deleted successfully"}
 
-@app.post("/edit_job")
+@app.post("/api/edit_job")
 async def edit_job(edit_details:edit_job):
     job_id = edit_details.job_id
     updated_data = edit_details.updates
@@ -180,7 +180,7 @@ async def edit_job(edit_details:edit_job):
         raise HTTPException(status_code=404, detail="Job not found")
     return {"message": "Job updated successfully"}
 
-@app.post("/search_jobs")
+@app.post("/api/search_jobs")
 async def search_jobs(details:details):
     sended_data={}
     for key, value in details.model_dump().items():
@@ -194,7 +194,7 @@ async def search_jobs(details:details):
     result1,result2=JobSearch.search(user_input=sended_data)
     return result1,result2
 
-@app.get("/get-jobs")
+@app.get("/api/get-jobs")
 async def get_jobs():
     jobs = db.jobs.find().to_list()
     list_of_jobs = []
@@ -204,17 +204,17 @@ async def get_jobs():
     return list_of_jobs
 
 
-@app.post("/prompt_to_job")
-def prompt_to_job(prompt: prompt_to_job):
-    text = prompt.prompt
-    name = prompt.name
-    thread_id = prompt.thread_id
-    response=graph.response(text,name=name,thread_id=thread_id)
-    # html_text = markdown.markdown(response)
-    # response = md(html_text,heading_style="ATX")
-    return response
+# @app.post("/prompt_to_job")
+# def prompt_to_job(prompt: prompt_to_job):
+#     text = prompt.prompt
+#     name = prompt.name
+#     thread_id = prompt.thread_id
+#     response=graph.response(text,name=name,thread_id=thread_id)
+#     # html_text = markdown.markdown(response)
+#     # response = md(html_text,heading_style="ATX")
+#     return response
 
-@app.post("/resume_upload")
+@app.post("/api/resume_upload")
 async def resume_upload(file: UploadFile = File(...),Email:str=""):
     if not file.filename.endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Only PDF files allowed")
@@ -246,7 +246,7 @@ async def resume_upload(file: UploadFile = File(...),Email:str=""):
     ranked_list = job_sort.rank_companies()
     return ranked_list
 
-@app.get("/get-text")
+@app.get("/api/get-text")
 async def get_text(Email:str):
     x=db.resumes.find_one({"user":Email.replace("%40","@")})
     job_sort=jobSort(x["content"])
@@ -254,7 +254,7 @@ async def get_text(Email:str):
     return ranked_list
 
 def send_reset_email(email: str, token: str):
-    reset_link = f"http://localhost:5173/reset-password?token={token}"
+    reset_link = f"http://localhost:5000/reset-password?token={token}"
     subject = "Password Reset Request"
     body = f"<p>Click the link below to reset your password:</p><a href='{reset_link}'>{reset_link}</a>"
 
@@ -273,7 +273,7 @@ def send_reset_email(email: str, token: str):
         raise HTTPException(status_code=500, detail="Failed to send reset email")
 
 # forgat password
-@app.post("/forgot-password")
+@app.post("/api/forgot-password")
 async def forgot_password(request: ForgotPasswordRequest):
     user = db.users.find_one({"email": request.email})
     if not user:
@@ -284,7 +284,7 @@ async def forgot_password(request: ForgotPasswordRequest):
     return {"message": "Password reset link sent to your email."}
 
 
-@app.post("/reset-password")
+@app.post("/api/reset-password")
 async def reset_password(request: ResetPasswordRequest):
     email = reset_tokens.get(request.token)
     if not email:
@@ -298,5 +298,5 @@ async def reset_password(request: ResetPasswordRequest):
 
 
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+# if __name__ == "__main__":
+#     uvicorn.run(app, host="127.0.0.1", port=8000)

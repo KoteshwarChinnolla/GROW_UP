@@ -323,7 +323,7 @@ const Jobs = () => {
               }, 200);
 
               try {
-                const response = await fetch('http://localhost:8000/resume_upload', {
+                const response = await fetch('/api/resume_upload', {
                   method: 'POST',
                   body: formData,
                 });

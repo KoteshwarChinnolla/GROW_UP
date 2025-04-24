@@ -13,8 +13,8 @@ duckduckgo-search
 langgraph
 markdownify
 markdown
-transformers
-torch
+# transformers
+# torch
 passlib[bcrypt]
 email-validator
-pandas
+# pandas

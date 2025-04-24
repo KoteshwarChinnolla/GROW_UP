@@ -26,9 +26,9 @@ class JobDataTransformer:
 
           opening = {
               "role": job.get("role") or None,
-              "experience": f"{job.get('from_experience')} - {job.get("to_experience")} years",
+              "experience": f"{job.get('from_experience')} - {job.get('to_experience')} years",
               "location": job.get("city") or None,
-              "salary": f"{job.get('from_salary')} - {job.get("to_salary")} LPA",
+              "salary": f"{job.get('from_salary')} - {job.get('to_salary')} LPA",
               "type": job.get("job_type") or None
           }
 
